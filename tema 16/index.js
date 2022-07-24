@@ -9,6 +9,7 @@
 const parrafos = document.querySelectorAll(".parrafo")
 const secciones = document.querySelectorAll(".seccion")
 const papelera = document.getElementById("icono-papelera")
+
 parrafos.forEach(parrafo => {
     parrafo.addEventListener("dragstart", event => {
         parrafo.classList.add("drag")
@@ -28,11 +29,18 @@ secciones.forEach(seccion => {
     })
 
     seccion.addEventListener("drop", event => {
-    let idparrafo = event.dataTransfer.getData("id")
-     
-    const parrafo = document.getElementById(idparrafo)
-    
+    let idparrafo = event.dataTransfer.getData("id")    
+    const parrafo = document.getElementById(idparrafo)    
     seccion.append(parrafo)
     })
 })
+papelera.addEventListener("dragover", event => {
+    event.preventDefault()
+})
+papelera.addEventListener("drop", event => {
+    let idparrafo = event.dataTransfer.getData("id")
+    const parrafo = document.getElementById(idparrafo)   
+    parrafo.remove()  
+    
 
+})
